@@ -4,11 +4,27 @@
     <title>GummyBear</title>
     <%= csrf_meta_tags %>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+
+    <nav>
+      <div class="nav-wrapper">
+       <%= link_to "Gummy Bears", root_path, class: "brand-logo" %>
+       <ul id="nav-mobile" class="right hide-on-med-and-down">
+         <li><%= link_to "Home", root_path %></li>
+         <li><%= link_to "Products", products_path %></li>
+         <li><%= link_to "About", root_path %></li>
+       </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
   </body>
 </html>

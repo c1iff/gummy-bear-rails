@@ -1,0 +1,32 @@
+<br>
+<div class="row">
+  <div class="col m4">
+    <h4> <%= @product.name %> </h4>
+    <p>$<%= @product.cost %></p>
+  </div>
+  <div class="col m8">
+    <%= image_tag "http://www.clipartkid.com/images/226/gummy-bear-lamps-s6DOko-clipart.jpg", class: "responsive-img" %>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="row">
+  <div class="col m6">
+    <h5 class="light">Description</h5>
+    <p>
+      <%= @product.description %>
+    </p>
+  </div>
+  <div class="col m6">
+    <h5>Features</h5>
+    <p>
+      <%= @product.features %>
+    </p>
+  </div>
+</div>
+
+
+<p>
+  Part Number: <%= @product.part_number %>
+</p>
