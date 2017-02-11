@@ -1,13 +1,20 @@
 <h1>Products</h1>
 
-<ul>
   <% @products.each do |product| %>
-    <h5><%= link_to product.name, product_path(product) %></h5>
-    <li><%= link_to "Edit", edit_product_path(product), class: 'btn' %> <%= link_to "Delete", product_path(product), class: 'btn',
-    :data => {:confirm => "Are you sure?",
-      :method => "delete"} %></li>
-      <br><div class="divider"></div>
+    <%= link_to product_path(product) do %>
+    <div class="card horizontal z-depth-1">
+      <div class="car-image">
+        <%= image_tag product.img_url, class: "left", size: "120x120" %>
+      </div>
+      <div class="card-content black-text">
+        <h4><%= product.name %></h4>
+        <p class="text-purple"> <%= product.cost %> </p>
+      </div>
+    </div>
+    <% end %>
   <% end %>
-</ul>
+  <br>
 
-<%= link_to "Add New Product", new_product_path, class:"btn" %>
+<div class="section right-align">
+  <%= link_to "Add New Product", new_product_path, class:"btn right-align" %>
+</div>

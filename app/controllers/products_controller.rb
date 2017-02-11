@@ -18,7 +18,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @show = false;
     @product = Product.find(params[:id])
+    @reviews = @product.reviews.all
   end
 
   def edit
@@ -36,6 +38,9 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
+    @product.reviews.each do |review|
+      review.destroy
+    end
     @product.destroy
     redirect_to products_path
   end
@@ -43,6 +48,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :description, :features, :part_number, :cost)
+    params.require(:product).permit(:name, :description, :features, :part_number, :cost, :origin, :img_url)
   end
 end

@@ -1,32 +1,81 @@
 <br>
+<div class="section right-align">
+  <%= link_to "Edit", edit_product_path(@product), class: 'btn orange' %> <%= link_to "Delete", product_path(@product), class: 'btn red',
+  :data => {:confirm => "Are you sure?",
+    :method => "delete"} %>
+</div>
+<br>
 <div class="row">
   <div class="col m4">
     <h4> <%= @product.name %> </h4>
     <p>$<%= @product.cost %></p>
   </div>
   <div class="col m8">
-    <%= image_tag "http://www.clipartkid.com/images/226/gummy-bear-lamps-s6DOko-clipart.jpg", class: "responsive-img" %>
+    <%= image_tag @product.img_url, class: "responsive-img" %>
   </div>
 </div>
 
 <div class="divider"></div>
 
-<div class="row">
-  <div class="col m6">
-    <h5 class="light">Description</h5>
-    <p>
-      <%= @product.description %>
-    </p>
+<div class="section">
+  <div class="row">
+    <div class="col m6">
+      <h5>Description</h5>
+      <p>
+        <%= @product.description %>
+      </p>
+    </div>
+    <div class="col m6">
+      <h5>Features</h5>
+      <p>
+        <%= @product.features %>
+      </p>
+    </div>
   </div>
-  <div class="col m6">
-    <h5>Features</h5>
+
+
+  <p class="thick">
+    Part Number: <%= @product.part_number %>
+  </p>
+  <p>
+    Made in: <%= @product.origin %>
+  </p>
+
+
+  <div class="review-content">
     <p>
-      <%= @product.features %>
+      REVIEWS
     </p>
-  </div>
+  </div><br>
+  <% if @show %>
+  <%= render "layouts/errors", :object => @product %>
+
+  <%= form_for [@product, @review] do |f| %>
+  <%= f.label :user %>
+  <%= f.text_field :user %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+  <%= f.text_field :product_id, type: "hidden", value: @product.id %>
+
+  <%= f.submit "Add Product", class: "btn" %>
+  <% end %>
+  <% else %>
+  <%= link_to "Add A Review", new_product_review_path(@product), class:"btn right" %>
+
+  <ul>
+    <% @reviews.each do |review| %>
+    <h5>Reviewed By: <%= review.user %></h5>
+    <p>
+      <%= review.content %>
+    </p>
+    <p>
+      Rating: <%= review.rating %>
+    </p>
+
+    <br><div class="divider"></div>
+    <% end %>
+  </ul>
+  <% end %>
 </div>
-
-
-<p>
-  Part Number: <%= @product.part_number %>
-</p>
