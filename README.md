@@ -47,7 +47,9 @@ You will need the following things properly installed on your computer.
 * `bundle install`
 * `postgres`
 * `rails db:create`
-* `rails db:migrate`
+* `rails db:migrate db:test:prepare`
+* `rails db:seed`
+
 
 ## Running / Development
 
